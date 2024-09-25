@@ -1,11 +1,11 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int gappx     = 20;        /* gaps between windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "aurebesh:size=10" };
 static const char dmenufont[]       = "aurebesh:size=10";
 static const char col_gray1[]       = "#222222";
@@ -74,10 +74,10 @@ static const char *signalmsg[] = { "signal-desktop", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,		XF86XK_MonBrightnessUp,    spawn,          SHCMD("/usr/src/dwm/sh/incbright.sh") },
-	{ 0,		XF86XK_MonBrightnessDown,  spawn,          SHCMD("/usr/src/dwm/sh/decbright.sh") },
-	{ 0,            XF86XK_AudioRaiseVolume,   spawn,	   SHCMD("/usr/src/dwm/sh/incvolume.sh") },
-	{ 0,            XF86XK_AudioLowerVolume,   spawn,          SHCMD("/usr/src/dwm/sh/decvolume.sh") },
+	{ 0,		XF86XK_MonBrightnessUp,    spawn,          SHCMD("/usr/src/sh/incbright.sh") },
+	{ 0,		XF86XK_MonBrightnessDown,  spawn,          SHCMD("/usr/src/sh/decbright.sh") },
+	{ 0,            XF86XK_AudioRaiseVolume,   spawn,	   SHCMD("/usr/src/sh/incvolume.sh") },
+	{ 0,            XF86XK_AudioLowerVolume,   spawn,          SHCMD("/usr/src/sh/decvolume.sh") },
 	{ 0,            XF86XK_AudioMute,          spawn,          SHCMD("pactl set-sink-mute 0 toggle") },
 	
 	{ MODKEY,			XK_Print,  spawn,          {.v = scrot0 } },
