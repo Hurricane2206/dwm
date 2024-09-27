@@ -6,8 +6,8 @@ static const unsigned int gappx     = 20;        /* gaps between windows */
 static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "aurebesh:size=10" };
-static const char dmenufont[]       = "aurebesh:size=10";
+static const char *fonts[]          = { "aurebesh:size=14" };
+static const char dmenufont[]       = "aurebesh:size=14";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
