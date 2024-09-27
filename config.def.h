@@ -21,7 +21,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "  ","  ", " 󰖟 ", " ", " 󰵅 ", " 󰊴 ", "  " };
+static const char *tags[] = { " 󰣇 ", "  ", " 󰖟 ", " ", " 󰵅 ", " 󰊴 ", "  " };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -74,10 +74,10 @@ static const char *signalmsg[] = { "signal-desktop", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,		XF86XK_MonBrightnessUp,    spawn,          SHCMD("/usr/src/sh/incbright.sh") },
-	{ 0,		XF86XK_MonBrightnessDown,  spawn,          SHCMD("/usr/src/sh/decbright.sh") },
-	{ 0,            XF86XK_AudioRaiseVolume,   spawn,	   SHCMD("/usr/src/sh/incvolume.sh") },
-	{ 0,            XF86XK_AudioLowerVolume,   spawn,          SHCMD("/usr/src/sh/decvolume.sh") },
+	{ 0,		XF86XK_MonBrightnessUp,    spawn,          SHCMD("/usr/src/dwm/sh/incbright.sh") },
+	{ 0,		XF86XK_MonBrightnessDown,  spawn,          SHCMD("/usr/src/dwm/sh/decbright.sh") },
+	{ 0,            XF86XK_AudioRaiseVolume,   spawn,	   SHCMD("/usr/src/dwm/sh/incvolume.sh") },
+	{ 0,            XF86XK_AudioLowerVolume,   spawn,          SHCMD("/usr/src/dwm/sh/decvolume.sh") },
 	{ 0,            XF86XK_AudioMute,          spawn,          SHCMD("pactl set-sink-mute 0 toggle") },
 	
 	{ MODKEY,			XK_Print,  spawn,          {.v = scrot0 } },
