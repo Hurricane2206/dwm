@@ -1,23 +1,32 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 20;        /* gaps between windows */
 static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "aurebesh:size=10" };
-static const char dmenufont[]       = "aurebesh:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
+static const int topbar             = 1;        /* 0 means bottom bar */
+static const char *fonts[]          = { "Hurmit Nerd Font:size=8" };
+static const char dmenufont[]       = "Hurmit Nerd Font:size=8";
+static const char col_gray1[]       = "#22272f";
+static const char col_gray2[]       = "#44495f";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 static const char col_red[]         = "#880000";
+static const char col_blue[]	    = "#004488";
+static const unsigned int baralpha = 100;
+static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_red,  col_red  },
+	[SchemeSel]  = { col_gray4, col_blue,  col_blue  },
+};
+
+static const unsigned int alphas[][3]	= {
+	/*		 fg	 bg	   border      */
+	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
 /* tagging */
@@ -64,21 +73,28 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_red, "-sf", col_gray4, NULL };
-static const char *termcmd[]   = { "kitty", NULL };
+static const char *dmenucmd[]  = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_blue, "-sf", col_gray4, NULL };
+static const char *roficmd[]   = { "rofi", "-show", "drun", "-show-icons" };
+static const char *termcmd[]   = { "alacritty", NULL };
 static const char *scrot0[]    = { "scrot", "/home/hurricane/Pictures/Screenshots/screenshot.jpg", NULL };
 static const char *scrot1[]    = { "scrot", "/home/hurricane/Pictures/Screenshots/screenshot.jpg", "-s", NULL };
 static const char *vmanager[]  = { "virt-manager", NULL };
 static const char *firefox[]   = { "firefox", NULL };
 static const char *signalmsg[] = { "signal-desktop", NULL };
 
+static const char *upbl[]	= { "/bin/bash", "/usr/src/dwm/sh/incbright.sh", NULL };
+static const char *downbl[]	= { "xbacklight", "-dec", "2", NULL };
+static const char *upvol[]	= { "/bin/bash", "/usr/src/dwm/sh/incvolume.sh", NULL };
+static const char *downvol[]	= { "xbacklight", "-inc", "2", NULL };
+static const char *mutevol[]	= { "pulsemixer", "--toggle-mute", NULL };
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,		XF86XK_MonBrightnessUp,    spawn,          SHCMD("/usr/src/sh/incbright.sh") },
-	{ 0,		XF86XK_MonBrightnessDown,  spawn,          SHCMD("/usr/src/sh/decbright.sh") },
-	{ 0,            XF86XK_AudioRaiseVolume,   spawn,	   SHCMD("/usr/src/sh/incvolume.sh") },
-	{ 0,            XF86XK_AudioLowerVolume,   spawn,          SHCMD("/usr/src/sh/decvolume.sh") },
-	{ 0,            XF86XK_AudioMute,          spawn,          SHCMD("pactl set-sink-mute 0 toggle") },
+	{ 0,		XF86XK_MonBrightnessUp,    spawn,          {.v = upbl } },
+	{ 0,		XF86XK_MonBrightnessDown,  spawn,          {.v = downbl } },
+	{ 0,            XF86XK_AudioRaiseVolume,   spawn,	   {.v = upvol } },
+	{ 0,            XF86XK_AudioLowerVolume,   spawn,          {.v = downvol } },
+	{ 0,            XF86XK_AudioMute,          spawn,          {.v = mutevol } },
 	
 	{ MODKEY,			XK_Print,  spawn,          {.v = scrot0 } },
 	{ MODKEY|ShiftMask,		XK_Print,  spawn,          {.v = scrot1 } },
@@ -86,7 +102,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_s,      spawn,          {.v = signalmsg } },
 	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefox } },
 	{ MODKEY|ShiftMask,             XK_v,      spawn,          {.v = vmanager } },
-	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
